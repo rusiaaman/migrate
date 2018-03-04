@@ -3,5 +3,5 @@
 package main
 
 import (
-	_ "github.com/mattes/migrate/database/cockroachdb"
+	_ "github.com/NanoNets/migrate/database/cockroachdb"
 )

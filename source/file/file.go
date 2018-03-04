@@ -9,7 +9,7 @@ import (
 	"path"
 	"path/filepath"
 
-	"github.com/mattes/migrate/source"
+	"github.com/NanoNets/migrate/source"
 )
 
 func init() {

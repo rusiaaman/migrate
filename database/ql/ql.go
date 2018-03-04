@@ -10,8 +10,8 @@ import (
 	nurl "net/url"
 
 	_ "github.com/cznic/ql/driver"
-	"github.com/mattes/migrate"
-	"github.com/mattes/migrate/database"
+	"github.com/NanoNets/migrate"
+	"github.com/NanoNets/migrate/database"
 )
 
 func init() {

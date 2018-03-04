@@ -9,7 +9,7 @@ import (
 	"strings"
 
 	"cloud.google.com/go/storage"
-	"github.com/mattes/migrate/source"
+	"github.com/NanoNets/migrate/source"
 	"golang.org/x/net/context"
 	"google.golang.org/api/iterator"
 )

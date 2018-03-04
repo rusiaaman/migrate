@@ -3,8 +3,8 @@ package redshift
 import (
 	"net/url"
 
-	"github.com/mattes/migrate/database"
-	"github.com/mattes/migrate/database/postgres"
+	"github.com/NanoNets/migrate/database"
+	"github.com/NanoNets/migrate/database/postgres"
 )
 
 // init registers the driver under the name 'redshift'
