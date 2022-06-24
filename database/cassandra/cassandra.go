@@ -52,7 +52,8 @@ func (p *Cassandra) Open(url string) (database.Driver, error) {
 		return nil, ErrNoKeyspace
 	}
 
-	migrationsTable := u.Query().Get("x-migrations-table")
+	parsedQuery := u.Query()
+	migrationsTable := parsedQuery.Get("x-migrations-table")
 	if len(migrationsTable) == 0 {
 		migrationsTable = DefaultMigrationsTable
 	}
@@ -65,7 +66,17 @@ func (p *Cassandra) Open(url string) (database.Driver, error) {
 	cluster := gocql.NewCluster(u.Host)
 	cluster.Keyspace = u.Path[1:len(u.Path)]
 	cluster.Consistency = gocql.All
-	cluster.Timeout = 1 * time.Minute
+
+	timeOutSeconds, err := strconv.Atoi(parsedQuery.Get("timeout-seconds"))
+	if err != nil {
+		timeOutSeconds = 60
+	}
+	connectTimeOutSeconds, err := strconv.Atoi(parsedQuery.Get("connect-timeout-seconds"))
+	if err != nil {
+		connectTimeOutSeconds = 60
+	}
+	cluster.Timeout = time.Duration(timeOutSeconds) * time.Second
+	cluster.ConnectTimeout = time.Duration(connectTimeOutSeconds) * time.Second
 	cluster.DisableInitialHostLookup = true
 
 	if len(u.Query().Get("username")) > 0 && len(u.Query().Get("password")) > 0 {
